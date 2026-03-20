@@ -83,5 +83,27 @@
     >
       Scissor
     </button>
+
+    <script>
+      const hours = 4;
+
+      if (hours >= 6 && hours < 12) {
+        console.log("Good Morning !");
+      } else if (hours >= 12 && hours < 7) {
+        console.log("Good Evening !");
+      } else {
+        console.log("Good Night !");
+      }
+
+      const randomCoinNumber = Math.random();
+
+      const coinFlip =
+        randomCoinNumber >= 0 && randomCoinNumber < 1 / 2 ? "Heads" : "Tails";
+      console.log(coinFlip);
+
+      const myGuess = "Tails";
+      const result = myGuess === coinFlip ? "You Win" : "You Lose";
+      console.log(result);
+    </script>
   </body>
 </html>

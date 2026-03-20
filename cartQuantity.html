@@ -14,7 +14,15 @@
       onclick="
         // cartQuantity = cartQuantity + 1;
         // cartQuantity += 1;
-        cartQuantity++;
+
+        // if (cartQuantity !== '10') {
+        //   cartQuantity++;
+        // }
+
+        cartQuantity < '10'
+          ? cartQuantity++
+          : alert('Cart Quantity Exceeded, Max Quantity is 10.');
+
         console.log(`Cart Quantity: ${cartQuantity}`);
       "
     >
@@ -25,7 +33,11 @@
       onclick="
         // cartQuantity = cartQuantity - 1;
         // cartQuantity -= 1;
-        cartQuantity--;
+
+        cartQuantity > '0'
+          ? cartQuantity--
+          : alert('Cart Quantity cannot be Negative.');
+
         console.log(`Cart Quantity: ${cartQuantity}`);
       "
     >
