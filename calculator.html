@@ -4,7 +4,7 @@
     <title>Calculator</title>
   </head>
   <body>
-    <p>Calculator</p>
+    <!-- <p>Calculator</p>
     <p>
       <button onclick="
           calculation += '1'
@@ -99,6 +99,70 @@
 
     <script>
       let calculation = '';
+    </script> -->
+
+    <p>Calculator</p>
+    <p>
+      <button onclick="handleCalculation('1')">1</button>
+
+      <button onclick="handleCalculation('2')">2</button>
+
+      <button onclick="handleCalculation('3')">3</button>
+
+      <button onclick="handleCalculation(' + ')">+</button>
+    </p>
+    <p>
+      <button onclick="handleCalculation('4')">4</button>
+
+      <button onclick="handleCalculation('5')">5</button>
+
+      <button onclick="handleCalculation('6')">6</button>
+
+      <button onclick="handleCalculation(' - ')">-</button>
+    </p>
+    <p>
+      <button onclick="handleCalculation('7')">7</button>
+
+      <button onclick="handleCalculation('8')">8</button>
+
+      <button onclick="handleCalculation('9')">9</button>
+
+      <button onclick="handleCalculation(' * ')">*</button>
+    </p>
+    <p>
+      <button onclick="handleCalculation('0')">0</button>
+
+      <button onclick="handleCalculation('.')">.</button>
+
+      <button
+        onclick="
+          calculation = eval(calculation);
+          console.log(calculation);
+        "
+      >
+        =
+      </button>
+
+      <button onclick="handleCalculation(' / ')">/</button>
+    </p>
+    <p>
+      <button
+        onclick="
+          calculation = '';
+          console.log(calculation);
+          console.log('CLEARED');
+        "
+      >
+        Clear
+      </button>
+    </p>
+
+    <script>
+      let calculation = "";
+      function handleCalculation(value) {
+        calculation += value;
+        console.log(calculation);
+      }
     </script>
   </body>
 </html>
