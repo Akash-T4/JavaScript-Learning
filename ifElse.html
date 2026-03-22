@@ -4,7 +4,7 @@
     <title>Rock Paper Scissor</title>
   </head>
   <body>
-    <p>Rock Paper Scissor</p>
+    <!-- <p>Rock Paper Scissor</p>
     <button
       onclick="
         const randomNumber = Math.random();
@@ -82,28 +82,52 @@
       "
     >
       Scissor
-    </button>
+    </button> -->
+
+    <p>Coin Toss</p>
+    <button onclick="tossCoin('Heads')">Heads</button>
+    <button onclick="tossCoin('Tails')">Tails</button>
 
     <script>
-      const hours = 4;
+      // const hours = 4;
 
-      if (hours >= 6 && hours < 12) {
-        console.log("Good Morning !");
-      } else if (hours >= 12 && hours < 7) {
-        console.log("Good Evening !");
-      } else {
-        console.log("Good Night !");
+      // if (hours >= 6 && hours < 12) {
+      //   console.log("Good Morning !");
+      // } else if (hours >= 12 && hours < 7) {
+      //   console.log("Good Evening !");
+      // } else {
+      //   console.log("Good Night !");
+      // }
+
+      function tossCoin(myGuess) {
+        const randomCoinNumber1 = Math.random();
+        const randomCoinNumber2 = Math.random();
+
+        const computerGuess =
+          randomCoinNumber1 >= 0 && randomCoinNumber1 < 1 / 2
+            ? "Heads"
+            : "Tails";
+        console.log(computerGuess);
+
+        const tossResult =
+          randomCoinNumber2 >= 0 && randomCoinNumber2 < 1 / 2
+            ? "Heads"
+            : "Tails";
+        console.log(tossResult);
+
+        const result =
+          myGuess === computerGuess
+            ? "Tie, ReToss"
+            : myGuess === "Heads" && tossResult === "Heads"
+              ? "You Win"
+              : myGuess === "Tails" && tossResult === "Tails"
+                ? "You Win"
+                : "Computer Wins";
+        console.log(result);
+        alert(
+          `You Picked ${myGuess}. Computer Picked ${computerGuess}. ${result}`,
+        );
       }
-
-      const randomCoinNumber = Math.random();
-
-      const coinFlip =
-        randomCoinNumber >= 0 && randomCoinNumber < 1 / 2 ? "Heads" : "Tails";
-      console.log(coinFlip);
-
-      const myGuess = "Tails";
-      const result = myGuess === coinFlip ? "You Win" : "You Lose";
-      console.log(result);
     </script>
   </body>
 </html>
