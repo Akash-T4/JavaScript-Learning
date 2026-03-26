@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+      console.log(typeof "1");
+      console.log(typeof 1);
+      console.log(typeof 1.1);
+      console.log(typeof true);
+
+      const product = {
+        name: "shirt",
+        price: 500,
+        func: function function1() {
+          console.log("METHOD"); // Function saved inside Object -> METHOD.
+        },
+      };
+      console.log(product.name); // Dot Notation
+      console.log(product["price"]); // Bracket Notation
+      product.func();
+
+      console.log("akash".toUpperCase());
+      console.log("akash".length);
+
+      // const name = product.name;
+      // console.log(name);
+
+      const { name } = product; //DeStructuring
+      console.log(name);
+
+      const obj1 = {
+        // name: name,
+        name, // Short Hand Property
+      };
+      console.log(obj1.name);
+
+      const obj2 = {
+        // func : function function1() {
+        //   console.log("SHORT HAND METHOD");
+        // },
+
+        func() {
+          console.log("SHORT HAND METHOD"); // Short Hand Method
+        },
+      };
+      obj2.func();
+
+      const obj3 = obj1; // Objects store references not actual object in memory
+    </script>
+  </body>
+</html>
