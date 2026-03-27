@@ -8,21 +8,35 @@
     <button onclick="playGame('Rock')">Rock</button>
     <button onclick="playGame('Paper')">Paper</button>
     <button onclick="playGame('Scissor')">Scissor</button>
-    <button onclick="
-      score.wins = 0;
-      score.losses = 0;
-      score.ties = 0;
-      localStorage.removeItem('score');
-      alert(`The Score is Reset
-Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`)
-    ">Reset Score</button>
+    <p class="js-result"></p>
+    <p class="js-move"></p>
+    <p class="js-score"></p>
+    <button
+      onclick="
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        localStorage.removeItem('score');
+        displayScore();
+        document.querySelector('.js-result').innerHTML = '';
+        document.querySelector('.js-move').innerHTML = '';
+      
+        //         alert(`The Score is Reset
+        // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);
+        // Code Commented as the same feature is implemented using DOM
+      "
+    >
+      Reset Score
+    </button>
 
     <script>
-      const score = JSON.parse(localStorage.getItem('score')) || {
+      const score = JSON.parse(localStorage.getItem("score")) || {
         wins: 0,
         losses: 0,
-        ties: 0
+        ties: 0,
       };
+
+      displayScore();
 
       function playGame(playerMove) {
         const computerMove = pickComputerMove();
@@ -62,12 +76,20 @@ Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`)
           score.ties += 1;
         }
 
-        localStorage.setItem('score', JSON.stringify(score));
+        localStorage.setItem("score", JSON.stringify(score));
 
-        alert(
-          `You Picked ${playerMove}. Computer Picked ${computerMove}. ${result}
-Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`,
-        );
+        displayScore();
+
+        document.querySelector(".js-result").innerHTML = result;
+
+        document.querySelector(".js-move").innerHTML =
+          `You ${playerMove} - ${computerMove} Computer `;
+
+        //         alert(
+        //           `You Picked ${playerMove}. Computer Picked ${computerMove}. ${result}
+        // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`,
+        //         );
+        // Code Commented as the same feature is implemented using DOM
       }
 
       function pickComputerMove() {
@@ -83,6 +105,11 @@ Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`,
         }
 
         return computerMove;
+      }
+
+      function displayScore() {
+        document.querySelector(".js-score").innerHTML =
+          `Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`;
       }
     </script>
   </body>
