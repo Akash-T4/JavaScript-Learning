@@ -2,20 +2,64 @@
 <html>
   <head>
     <title>DOM</title>
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      .subscribe-button {
+        background-color: black;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 30px;
+      }
+
+      .is-subscribed {
+        background-color: rgb(240, 240, 240);
+        color: black;
+      }
+
+      .cost-input {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .calculate-button {
+        background-color: rgb(19, 150, 19);
+        color: white;
+        border: none;
+        padding: 13px 15px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .negative-order-cost {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <p>YouTube Subscribe Button</p>
-    <button class="js-subscribe-button" onclick="subscribe()">Subscribe</button>
+    <button class="js-subscribe-button subscribe-button" onclick="subscribe()">
+      Subscribe
+    </button>
 
     <p>Amazon Shipping Cost Calculator</p>
-    <p>Order above &#8377;500 - FREE DELIVERY</p>
-    <p>Order under &#8377;500 - +&#8377;50 DELIVERY FEE</p>
+    <p>Order above &#8377;500 = FREE DELIVERY</p>
+    <p>Order under &#8377;500 = +&#8377;50 DELIVERY FEE</p>
     <input
-      class="js-cost-input"
-      placeholder="cost of order"
+      class="js-cost-input cost-input"
+      placeholder="Cost of order"
       onkeydown="calculateCostKeydown(event)"
     />
-    <button onclick="calculateCost()">Calculate</button>
+    <button class="calculate-button" onclick="calculateCost()">
+      Calculate
+    </button>
+    <p class="order-cost"></p>
     <script>
       // document.body.innerHTML = "Hello World...";
       // document.title = "DOM Learning";
@@ -24,17 +68,28 @@
         let buttonElement = document.querySelector(".js-subscribe-button");
         if (buttonElement.innerText === "Subscribe") {
           buttonElement.innerHTML = "Subscribed";
+          buttonElement.classList.add("is-subscribed");
         } else {
           buttonElement.innerHTML = "Subscribe";
+          buttonElement.classList.remove("is-subscribed");
         }
       }
 
       function calculateCost() {
         let cost = Number(document.querySelector(".js-cost-input").value);
-        if (cost > 500) {
-          cost += 50;
-        }
         console.log(cost);
+        if (cost <= 0) {
+          document.querySelector(".order-cost").innerHTML =
+            `${cost} : Cost cannot be 0 or less than 0`;
+          document
+            .querySelector(".order-cost")
+            .classList.add("negative-order-cost");
+        } else if (cost > 0 && cost < 500) {
+          cost += 50;
+          displayOrderCost(cost);
+        } else {
+          displayOrderCost(cost);
+        }
       }
 
       function calculateCostKeydown(event) {
@@ -42,6 +97,13 @@
         if (event.key === "Enter") {
           calculateCost();
         }
+      }
+
+      function displayOrderCost(cost) {
+        document.querySelector(".order-cost").innerHTML = `&#8377;${cost}`;
+        document
+          .querySelector(".order-cost")
+          .classList.remove("negative-order-cost");
       }
     </script>
   </body>
