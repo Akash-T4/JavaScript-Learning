@@ -3,31 +3,90 @@
   <head>
     <title>Rock Paper Scissor</title>
   </head>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: rgb(25, 25, 25);
+    }
+
+    .rpc-game-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .rpc-game-title {
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+    }
+
+    .rpc-game-move-icon {
+      height: 60px;
+    }
+
+    .rpc-game-move-button {
+      padding: 30px;
+      background-color: transparent;
+      border: 3px solid white;
+      border-radius: 70px;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    .rpc-game-result,
+    .rpc-game-score,
+    .rpc-game-move {
+      font-size: 25px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .rpc-game-result {
+      font-size: 40px;
+    }
+
+    .rpc-game-reset-score-button-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .rpc-game-reset-score-button {
+      background-color: white;
+      font-size: 15px;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
   <body>
-    <p>Rock Paper Scissor</p>
-    <button onclick="playGame('Rock')">Rock</button>
-    <button onclick="playGame('Paper')">Paper</button>
-    <button onclick="playGame('Scissor')">Scissor</button>
-    <p class="js-result"></p>
-    <p class="js-move"></p>
-    <p class="js-score"></p>
-    <button
-      onclick="
-        score.wins = 0;
-        score.losses = 0;
-        score.ties = 0;
-        localStorage.removeItem('score');
-        displayScore();
-        document.querySelector('.js-result').innerHTML = '';
-        document.querySelector('.js-move').innerHTML = '';
-      
-        //         alert(`The Score is Reset
-        // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);
-        // Code Commented as the same feature is implemented using DOM
-      "
-    >
-      Reset Score
-    </button>
+    <div class="rpc-game-container">
+      <div class="rpc-game-sub-container">
+        <p class="rpc-game-title">Rock Paper Scissor</p>
+        <div>
+          <button onclick="playGame('Rock')" class="rpc-game-move-button">
+            <img src="icons/Rock-emoji.png" class="rpc-game-move-icon" />
+          </button>
+          <button onclick="playGame('Paper')" class="rpc-game-move-button">
+            <img src="icons/Paper-emoji.png" class="rpc-game-move-icon" />
+          </button>
+          <button onclick="playGame('Scissor')" class="rpc-game-move-button">
+            <img src="icons/Scissor-emoji.png" class="rpc-game-move-icon" />
+          </button>
+        </div>
+
+        <p class="js-result rpc-game-result"></p>
+        <p class="js-move rpc-game-move"></p>
+        <p class="js-score rpc-game-score"></p>
+        <div class="rpc-game-reset-score-button-container">
+          <button onclick="resetScore()" class="rpc-game-reset-score-button">
+            Reset Score
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script>
       const score = JSON.parse(localStorage.getItem("score")) || {
@@ -83,7 +142,7 @@
         document.querySelector(".js-result").innerHTML = result;
 
         document.querySelector(".js-move").innerHTML =
-          `You ${playerMove} - ${computerMove} Computer `;
+          `You <img src="icons/${playerMove}-emoji.png" class="rpc-game-move-icon"> - <img src="icons/${computerMove}-emoji.png" class="rpc-game-move-icon"> Computer `;
 
         //         alert(
         //           `You Picked ${playerMove}. Computer Picked ${computerMove}. ${result}
@@ -110,6 +169,20 @@
       function displayScore() {
         document.querySelector(".js-score").innerHTML =
           `Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`;
+      }
+
+      function resetScore() {
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        localStorage.removeItem("score");
+        displayScore();
+        document.querySelector(".js-result").innerHTML = "";
+        document.querySelector(".js-move").innerHTML = "";
+
+        //         alert(`The Score is Reset
+        // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);
+        // Code Commented as the same feature is implemented using DOM
       }
     </script>
   </body>
