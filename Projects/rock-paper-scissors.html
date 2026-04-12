@@ -14,11 +14,26 @@
       justify-content: center;
     }
 
+    .rpc-game-title-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .rpc-game-title {
       font-size: 40px;
       font-weight: bold;
       color: white;
       text-align: center;
+    }
+
+    .rpc-game-result-emoji {
+      font-size: 40px;
+    }
+
+    .rpc-game-move-button-container {
+      display: flex;
+      justify-content: center;
     }
 
     .rpc-game-move-icon {
@@ -64,8 +79,13 @@
   <body>
     <div class="rpc-game-container">
       <div class="rpc-game-sub-container">
-        <p class="rpc-game-title">Rock Paper Scissor</p>
-        <div>
+        <div class="rpc-game-title-container">
+          <p class="rpc-game-result-emoji"></p>
+          <p class="rpc-game-title">Rock Paper Scissor</p>
+          <p class="rpc-game-result-emoji"></p>
+        </div>
+
+        <div class="rpc-game-move-button-container">
           <button onclick="playGame('Rock')" class="rpc-game-move-button">
             <img src="icons/Rock-emoji.png" class="rpc-game-move-icon" />
           </button>
@@ -94,6 +114,8 @@
         losses: 0,
         ties: 0,
       };
+
+      let resultEmoji = "";
 
       displayScore();
 
@@ -129,11 +151,18 @@
 
         if (result === "You Win") {
           score.wins += 1;
+          resultEmoji = "😄";
         } else if (result === "You Lose") {
           score.losses += 1;
+          resultEmoji = "😢";
         } else {
           score.ties += 1;
+          resultEmoji = "😐";
         }
+
+        document.querySelectorAll(".rpc-game-result-emoji").forEach((i) => {
+          i.innerHTML = resultEmoji;
+        });
 
         localStorage.setItem("score", JSON.stringify(score));
 
@@ -179,6 +208,9 @@
         displayScore();
         document.querySelector(".js-result").innerHTML = "";
         document.querySelector(".js-move").innerHTML = "";
+        document.querySelectorAll(".rpc-game-result-emoji").forEach((i) => {
+          i.innerHTML = "";
+        });
 
         //         alert(`The Score is Reset
         // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);
