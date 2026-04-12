@@ -1,0 +1,71 @@
+body {
+  font-family: Arial;
+  background-color: rgb(25, 25, 25);
+}
+
+.rpc-game-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rpc-game-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rpc-game-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.rpc-game-result-emoji {
+  font-size: 40px;
+}
+
+.rpc-game-move-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rpc-game-move-icon {
+  height: 60px;
+}
+
+.rpc-game-move-button {
+  padding: 30px;
+  background-color: transparent;
+  border: 3px solid white;
+  border-radius: 70px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.rpc-game-result,
+.rpc-game-score,
+.rpc-game-move {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.rpc-game-result {
+  font-size: 40px;
+}
+
+.rpc-game-reset-score-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rpc-game-reset-score-button {
+  background-color: white;
+  font-size: 15px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
