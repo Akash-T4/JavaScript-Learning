@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Arrays and Loops</title>
+  </head>
+  <body>
+    <script>
+      const array = [1, 2, 3];
+      console.log(array);
+
+      console.log(array[1]);
+
+      console.log(Array.isArray(array)); // Array is an Object
+
+      console.log(array.push(4)); // Add Value to Last
+      console.log(array);
+
+      console.log(array.pop()); // Remove Value from Last
+      console.log(array);
+
+      array.splice(0, 2); // 0 - index, 2 - how many values to remove
+      console.log(array);
+
+      let i = 1; // While Loop
+      while (i <= 5) {
+        console.log(i);
+        i++;
+      }
+
+      for (let i = 1; i <= 5; i++) { //For Loop
+        console.log(i);
+      }
+
+      array.forEach((i) => { // For Each Loop
+        console.log(i);
+      });
+
+      let sum = 0; // Accumulator Pattern
+      for (let i = 0; i < array.length; i++) {
+        sum += array[i];
+      }
+      console.log(sum);
+
+      let doubled = []; // Accumulator Pattern
+      for (let i = 0; i < array.length; i++) {
+        const doubledValue = array[i] * 2;
+        doubled.push(doubledValue);
+      }
+      console.log(doubled);
+    </script>
+  </body>
+</html>
