@@ -26,6 +26,7 @@
       .cost-input {
         font-size: 16px;
         padding: 10px;
+        margin-bottom: 30px;
       }
 
       .calculate-button {
@@ -39,6 +40,21 @@
 
       .negative-order-cost {
         color: red;
+      }
+
+      .class-list-btn {
+        background-color: rgb(240, 240, 240);
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-right: 10px;
+        border-radius: 6px;
+        margin-bottom: 30px;
+      }
+
+      .js-class-list-btn-is-toggled,
+      .js-class-list-btn-is-toggled2 {
+        background-color: black;
+        color: white;
       }
     </style>
   </head>
@@ -60,9 +76,74 @@
       Calculate
     </button>
     <p class="order-cost"></p>
+
+    <div>
+      <button
+        class="class-list-btn js-class-list-btn-l"
+        onclick="toggleClick('.js-class-list-btn-l')"
+      >
+        Learning
+      </button>
+      <button
+        class="class-list-btn js-class-list-btn-p"
+        onclick="toggleClick('.js-class-list-btn-p')"
+      >
+        Playing
+      </button>
+      <button
+        class="class-list-btn js-class-list-btn-g"
+        onclick="toggleClick('.js-class-list-btn-g')"
+      >
+        Gaming
+      </button>
+    </div>
+    <div>
+      <button
+        class="class-list-btn js-class-list-btn-ll"
+        onclick="toggleClick2('.js-class-list-btn-ll')"
+      >
+        Learning
+      </button>
+      <button
+        class="class-list-btn js-class-list-btn-pp"
+        onclick="toggleClick2('.js-class-list-btn-pp')"
+      >
+        Playing
+      </button>
+      <button
+        class="class-list-btn js-class-list-btn-gg"
+        onclick="toggleClick2('.js-class-list-btn-gg')"
+      >
+        Gaming
+      </button>
+    </div>
+
     <script>
       // document.body.innerHTML = "Hello World...";
-      // document.title = "DOM Learning";
+      // document.title = "DOM Learning";\\
+      function toggleClick(selector) {
+        let btnElem = document.querySelector(selector);
+        if (btnElem.classList.contains("js-class-list-btn-is-toggled")) {
+          btnElem.classList.remove("js-class-list-btn-is-toggled");
+        } else {
+          btnElem.classList.add("js-class-list-btn-is-toggled");
+        }
+      }
+
+      function toggleClick2(selector) {
+        let btnElem = document.querySelector(selector);
+        if (!btnElem.classList.contains("js-class-list-btn-is-toggled2")) {
+          let otherbtnElem = document.querySelector(
+            ".js-class-list-btn-is-toggled2",
+          );
+          if (otherbtnElem) {
+            otherbtnElem.classList.remove("js-class-list-btn-is-toggled2");
+          }
+          btnElem.classList.add("js-class-list-btn-is-toggled2");
+        } else {
+          btnElem.classList.remove("js-class-list-btn-is-toggled2");
+        }
+      }
 
       function subscribe() {
         let buttonElement = document.querySelector(".js-subscribe-button");
