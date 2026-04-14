@@ -8,6 +8,22 @@ let resultEmoji = "";
 
 displayScore();
 
+let intervalKey;
+let isAutoPlay = false;
+
+function autoPlay() {
+  if (!isAutoPlay) {
+    intervalKey = setInterval(function () {
+      const playerMove = pickComputerMove();
+      playGame(playerMove);
+    }, 1000);
+    isAutoPlay = true;
+  } else {
+    clearInterval(intervalKey);
+    isAutoPlay = false;
+  }
+}
+
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
 
@@ -100,6 +116,7 @@ function resetScore() {
   document.querySelectorAll(".rpc-game-result-emoji").forEach((i) => {
     i.innerHTML = "";
   });
+  clearInterval(intervalKey);
 
   //         alert(`The Score is Reset
   // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);

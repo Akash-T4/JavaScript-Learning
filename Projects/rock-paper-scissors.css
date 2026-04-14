@@ -62,10 +62,16 @@ body {
   justify-content: center;
 }
 
-.rpc-game-reset-score-button {
+.rpc-game-reset-score-button,
+.rpc-game-auto-play-button {
   background-color: white;
   font-size: 15px;
   padding: 10px 15px;
   border: none;
+  border-radius: 3px;
   cursor: pointer;
+}
+
+.rpc-game-auto-play-button {
+  margin-left: 10px;
 }
