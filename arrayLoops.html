@@ -58,6 +58,14 @@
       array2.forEach(function (x, i) {
         console.log(x, i);
       });
+
+      setTimeout(function () {
+        console.log("TIMEOUT FUNCTION");
+      }, 3000);
+
+      setInterval(function () {
+        console.log("INTERVAL FUNCTION");
+      }, 2000);
     </script>
   </body>
 </html>
