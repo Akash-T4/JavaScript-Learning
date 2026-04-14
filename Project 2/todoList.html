@@ -3,31 +3,120 @@
   <head>
     <title>Todo List Project</title>
   </head>
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    .todo-list-title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .js-todo-list,
+    .js-todo-header {
+      display: grid;
+      grid-template-columns: 200px 150px 100px;
+      column-gap: 10px;
+      row-gap: 10px;
+      align-items: center;
+      word-break: break-all;
+    }
+
+    .js-todo-header {
+      margin-bottom: 10px;
+      align-items: stretch;
+    }
+
+    .js-todo-name,
+    .js-todo-time {
+      font-size: 16px;
+      padding: 6px;
+    }
+
+    .todo-list-delete-button {
+      background-color: rgb(255, 36, 36);
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .todo-list-add-button {
+      background-color: rgb(0, 196, 10);
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
   <body>
-    <p>Todo List</p>
-    <input placeholder="Todo name" class="js-todo-name" />
-    <button onclick="addTodo()">Add</button>
+    <p class="todo-list-title">Todo List</p>
+    <div class="js-todo-header">
+      <input placeholder="Todo name" class="js-todo-name" />
+      <input type="date" class="js-todo-time" />
+      <button onclick="addTodo()" class="todo-list-add-button">Add</button>
+    </div>
     <div class="js-todo-list"></div>
     <script>
-      const todoList = [];
+      const todoList = JSON.parse(localStorage.getItem("todo")) || [];
+      renderTodoList();
 
       function renderTodoList() {
         let todoListHtml = "";
 
-        for (let i = 0; i < todoList.length; i++) {
-          const todoName = todoList[i];
-          todoListHtml += `<p>${todoName}</p>`;
-        }
+        // for (let i = 0; i < todoList.length; i++) { // Implemented using For Each Loop
+        //   const todoNameTime = todoList[i];
+        //   // const todoName = todoNameTime.todoName; // De-Structuring
+        //   // const todoTime = todoNameTime.todoTime;
+        //   const { todoName, todoTime } = todoNameTime;
+        //   todoListHtml += `
+        //     <div>${todoName}</div>
+        //     <div>${todoTime}</div>
+        //     <button class="todo-list-delete-button" 
+        //         onclick="
+        //         todoList.splice(${i},1);
+        //         localStorage.setItem('todo', JSON.stringify(todoList));
+        //         renderTodoList();
+        //     ">Delete</button>`;
+        // }
+
+        todoList.forEach((todoNameTime, i) => {
+          const { todoName, todoTime } = todoNameTime;
+          todoListHtml += `
+            <div>${todoName}</div>
+            <div>${todoTime}</div>
+            <button class="todo-list-delete-button" 
+                onclick="
+                todoList.splice(${i},1);
+                localStorage.setItem('todo', JSON.stringify(todoList));
+                renderTodoList();
+            ">Delete</button>`;
+        });
         document.querySelector(".js-todo-list").innerHTML = todoListHtml;
         console.log(todoListHtml);
       }
 
       function addTodo() {
         const todoName = document.querySelector(".js-todo-name").value;
-        todoList.push(todoName);
-        console.log(todoList);
-        document.querySelector(".js-todo-name").value = "";
-        renderTodoList();
+        const todoTime = document.querySelector(".js-todo-time").value;
+        if (todoName) {
+          todoList.push({
+            // todoName: todoName, // Short Hand Property
+            // todoTime: todoTime,
+            todoName,
+            todoTime,
+          });
+          console.log(todoList);
+          document.querySelector(".js-todo-name").value = "";
+          document.querySelector(".js-todo-time").value = "";
+          localStorage.setItem("todo", JSON.stringify(todoList));
+          renderTodoList();
+        }
       }
     </script>
   </body>
