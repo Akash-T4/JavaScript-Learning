@@ -66,6 +66,31 @@
       setInterval(function () {
         console.log("INTERVAL FUNCTION");
       }, 2000);
+
+      const arrowFunction = () => {
+        console.log("ARROW FUNCTION");
+      };
+      arrowFunction();
+
+      console.log(
+        [1, 2, 3, -2].filter((x, i) => {
+          if (x >= 0) {
+            return true;
+          } else {
+            return false;
+          }
+        }),
+      );
+
+      console.log([1, 2, 3, -2].filter((x) => x >= 0));
+
+      console.log(
+        [1, 2, 3].map((x, i) => {
+          return x * 2;
+        }),
+      );
+
+      console.log([1, 2, 3].map((x) => x * 2));
     </script>
   </body>
 </html>
