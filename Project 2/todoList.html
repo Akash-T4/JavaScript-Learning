@@ -59,7 +59,7 @@
     <div class="js-todo-header">
       <input placeholder="Todo name" class="js-todo-name" />
       <input type="date" class="js-todo-time" />
-      <button onclick="addTodo()" class="todo-list-add-button">Add</button>
+      <button class="todo-list-add-button js-todo-list-add-button">Add</button>
     </div>
     <div class="js-todo-list"></div>
     <script>
@@ -77,7 +77,7 @@
         //   todoListHtml += `
         //     <div>${todoName}</div>
         //     <div>${todoTime}</div>
-        //     <button class="todo-list-delete-button" 
+        //     <button class="todo-list-delete-button"
         //         onclick="
         //         todoList.splice(${i},1);
         //         localStorage.setItem('todo', JSON.stringify(todoList));
@@ -88,18 +88,30 @@
         todoList.forEach((todoNameTime, i) => {
           const { todoName, todoTime } = todoNameTime;
           todoListHtml += `
-            <div>${todoName}</div>
-            <div>${todoTime}</div>
-            <button class="todo-list-delete-button" 
-                onclick="
-                todoList.splice(${i},1);
-                localStorage.setItem('todo', JSON.stringify(todoList));
-                renderTodoList();
-            ">Delete</button>`;
+                <div>${todoName}</div>
+                <div>${todoTime}</div>
+                <button class="todo-list-delete-button js-todo-list-delete-button">
+                  Delete
+                </button>`;
         });
         document.querySelector(".js-todo-list").innerHTML = todoListHtml;
         console.log(todoListHtml);
+        document
+          .querySelectorAll(".js-todo-list-delete-button")
+          .forEach((deletebtn, i) => {
+            deletebtn.addEventListener("click", () => {
+              todoList.splice(i, 1);
+              localStorage.setItem("todo", JSON.stringify(todoList));
+              renderTodoList();
+            });
+          });
       }
+
+      document
+        .querySelector(".js-todo-list-add-button")
+        .addEventListener("click", () => {
+          addTodo();
+        });
 
       function addTodo() {
         const todoName = document.querySelector(".js-todo-name").value;
