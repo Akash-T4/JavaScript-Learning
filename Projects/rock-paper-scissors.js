@@ -13,7 +13,7 @@ let isAutoPlay = false;
 
 function autoPlay() {
   if (!isAutoPlay) {
-    intervalKey = setInterval(function () {
+    intervalKey = setInterval(() => {
       const playerMove = pickComputerMove();
       playGame(playerMove);
     }, 1000);
