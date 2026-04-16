@@ -4,6 +4,9 @@
     <title>Arrays and Loops</title>
   </head>
   <body>
+    <button class="js-start-btn">Start</button>
+    <button class="js-add-btn">Add</button>
+    <div class="js-added"></div>
     <script>
       const array = [1, 2, 3];
       console.log(array);
@@ -91,6 +94,55 @@
       );
 
       console.log([1, 2, 3].map((x) => x * 2));
+
+      let startInterval;
+      document.querySelector(".js-start-btn").addEventListener("click", () => {
+        if (document.querySelector(".js-start-btn").innerHTML !== "Finished") {
+          startInterval = setTimeout(() => {
+            document.querySelector(".js-start-btn").innerHTML = "Loading...";
+          }, 500);
+
+          setTimeout(() => {
+            clearInterval(startInterval);
+            document.querySelector(".js-start-btn").innerHTML = "Finished";
+          }, 2000);
+        }
+      });
+      document.querySelector(".js-start-btn").addEventListener("click", () => {
+        if (document.querySelector(".js-start-btn").innerHTML === "Finished") {
+          document.querySelector(".js-start-btn").innerHTML = "Start";
+        }
+      });
+
+      let addInterval;
+      document.querySelector(".js-add-btn").addEventListener("click", () => {
+        addInterval = setTimeout(() => {
+          document.querySelector(".js-added").innerHTML = "Added";
+        }, 100);
+
+        setTimeout(() => {
+          clearInterval(addInterval);
+          document.querySelector(".js-added").innerHTML = "";
+        }, 2000);
+      });
+
+      const arr = [2, 7, 55, 77, 13, -6];
+
+      temp = arr[0];
+      arr[0] = arr[arr.length - 1];
+      arr[4] = temp;
+      console.log(arr);
+
+      let value;
+
+      sortedArr = arr.sort((a, b) => a - b);
+
+      value = {
+        minValue: sortedArr[0],
+        maxValue: sortedArr[arr.length - 1],
+      };
+
+      console.log(value);
     </script>
   </body>
 </html>
