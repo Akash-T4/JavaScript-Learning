@@ -11,6 +11,12 @@ displayScore();
 let intervalKey;
 let isAutoPlay = false;
 
+document
+  .querySelector(".js-rpc-game-auto-play-button")
+  .addEventListener("click", () => {
+    autoPlay();
+  });
+
 function autoPlay() {
   if (!isAutoPlay) {
     intervalKey = setInterval(() => {
@@ -23,6 +29,24 @@ function autoPlay() {
     isAutoPlay = false;
   }
 }
+
+document
+  .querySelector(".js-rpc-game-rock-move-button")
+  .addEventListener("click", () => {
+    playGame("Rock");
+  });
+
+document
+  .querySelector(".js-rpc-game-paper-move-button")
+  .addEventListener("click", () => {
+    playGame("Paper");
+  });
+
+document
+  .querySelector(".js-rpc-game-scissor-move-button")
+  .addEventListener("click", () => {
+    playGame("Scissor");
+  });
 
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
@@ -104,6 +128,12 @@ function displayScore() {
   document.querySelector(".js-score").innerHTML =
     `Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`;
 }
+
+document
+  .querySelector(".js-rpc-game-reset-score-button")
+  .addEventListener("click", () => {
+    resetScore();
+  });
 
 function resetScore() {
   score.wins = 0;

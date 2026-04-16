@@ -14,13 +14,13 @@
         </div>
 
         <div class="rpc-game-move-button-container">
-          <button onclick="playGame('Rock')" class="rpc-game-move-button">
+          <button class="rpc-game-move-button js-rpc-game-rock-move-button">
             <img src="icons/Rock-emoji.png" class="rpc-game-move-icon" />
           </button>
-          <button onclick="playGame('Paper')" class="rpc-game-move-button">
+          <button class="rpc-game-move-button js-rpc-game-paper-move-button">
             <img src="icons/Paper-emoji.png" class="rpc-game-move-icon" />
           </button>
-          <button onclick="playGame('Scissor')" class="rpc-game-move-button">
+          <button class="rpc-game-move-button js-rpc-game-scissor-move-button">
             <img src="icons/Scissor-emoji.png" class="rpc-game-move-icon" />
           </button>
         </div>
@@ -29,10 +29,14 @@
         <p class="js-move rpc-game-move"></p>
         <p class="js-score rpc-game-score"></p>
         <div class="rpc-game-reset-score-button-container">
-          <button onclick="resetScore()" class="rpc-game-reset-score-button">
+          <button
+            class="rpc-game-reset-score-button js-rpc-game-reset-score-button"
+          >
             Reset Score
           </button>
-          <button onclick="autoPlay()" class="rpc-game-auto-play-button">
+          <button
+            class="rpc-game-auto-play-button js-rpc-game-auto-play-button"
+          >
             Auto Play
           </button>
         </div>
