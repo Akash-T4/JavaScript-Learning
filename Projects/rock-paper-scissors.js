@@ -23,9 +23,13 @@ function autoPlay() {
       const playerMove = pickComputerMove();
       playGame(playerMove);
     }, 1000);
+    document.querySelector(".js-rpc-game-auto-play-button").innerText =
+      "Stop Play";
     isAutoPlay = true;
   } else {
     clearInterval(intervalKey);
+    document.querySelector(".js-rpc-game-auto-play-button").innerText =
+      "Auto Play";
     isAutoPlay = false;
   }
 }
@@ -47,6 +51,21 @@ document
   .addEventListener("click", () => {
     playGame("Scissor");
   });
+
+document.body.addEventListener("keydown", (event) => {
+  console.log(event.key);
+  if (event.key === "r") {
+    playGame("Rock");
+  } else if (event.key === "p") {
+    playGame("Paper");
+  } else if (event.key === "s") {
+    playGame("Scissor");
+  } else if (event.key === "a") {
+    autoPlay();
+  } else if (event.key === "Backspace") {
+    resetScore();
+  }
+});
 
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
@@ -136,19 +155,58 @@ document
   });
 
 function resetScore() {
-  score.wins = 0;
-  score.losses = 0;
-  score.ties = 0;
-  localStorage.removeItem("score");
-  displayScore();
-  document.querySelector(".js-result").innerHTML = "";
-  document.querySelector(".js-move").innerHTML = "";
-  document.querySelectorAll(".rpc-game-result-emoji").forEach((i) => {
-    i.innerHTML = "";
-  });
-  clearInterval(intervalKey);
+  console.log(score);
+  if (score.wins || score.losses || score.ties) {
+    document.querySelector(".js-rpc-reset-score-confirmation").innerHTML = `
+  Are you sure you want to reset the score ? 
+  <button class="reset-score-confirmation-yes-btn">Yes</button>
+  <button class="reset-score-confirmation-no-btn">No</button>`;
 
-  //         alert(`The Score is Reset
-  // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);
-  // Code Commented as the same feature is implemented using DOM
+    document
+      .querySelector(".reset-score-confirmation-yes-btn")
+      .addEventListener("click", () => {
+        resetScoreYes();
+      });
+
+    document
+      .querySelector(".reset-score-confirmation-no-btn")
+      .addEventListener("click", () => {
+        resetScoreNo();
+      });
+
+    document.body.addEventListener("keydown", (event) => {
+      if (event.key === "y") {
+        resetScoreYes();
+      }
+    });
+
+    document.body.addEventListener("keydown", (event) => {
+      if (event.key === "n") {
+        resetScoreNo();
+      }
+    });
+
+    function resetScoreYes() {
+      score.wins = 0;
+      score.losses = 0;
+      score.ties = 0;
+      localStorage.removeItem("score");
+      displayScore();
+      document.querySelector(".js-result").innerHTML = "";
+      document.querySelector(".js-move").innerHTML = "";
+      document.querySelectorAll(".rpc-game-result-emoji").forEach((i) => {
+        i.innerHTML = "";
+      });
+      clearInterval(intervalKey);
+      document.querySelector(".js-rpc-reset-score-confirmation").innerHTML = "";
+    }
+
+    function resetScoreNo() {
+      document.querySelector(".js-rpc-reset-score-confirmation").innerHTML = "";
+    }
+
+    //         alert(`The Score is Reset
+    // Wins: ${score.wins}. Losses: ${score.losses}. Ties: ${score.ties}`);
+    // Code Commented as the same feature is implemented using DOM
+  }
 }

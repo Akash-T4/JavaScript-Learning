@@ -19,10 +19,12 @@ body {
   font-weight: bold;
   color: white;
   text-align: center;
+  margin-top: 0;
 }
 
 .rpc-game-result-emoji {
   font-size: 40px;
+  margin-top: 0;
 }
 
 .rpc-game-move-button-container {
@@ -73,5 +75,29 @@ body {
 }
 
 .rpc-game-auto-play-button {
+  margin-left: 10px;
+}
+
+.reset-score-confirmation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.reset-score-confirmation-yes-btn,
+.reset-score-confirmation-no-btn {
+  background-color: white;
+  height: 20px;
+  width: 36px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.reset-score-confirmation-yes-btn {
+  margin-right: 10px;
   margin-left: 10px;
 }
